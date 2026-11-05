@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "setup": "npm install && npx playwright install chromium",
-    "build": "node sims/build.mjs"
+    "build": "node sims/build.mjs",
+    "smoke": "node smoke.mjs"
   },
   "dependencies": {
     "@fontsource-variable/inter": "5.3.0",

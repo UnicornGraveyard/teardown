@@ -13,16 +13,28 @@ Ask how something works. Claude builds it as one offline HTML page: the machine 
 ## Install
 
 ```
-npx skills add elvarofficial/teardown -g -a claude-code
+npx skills add UnicornGraveyard/teardown -g -a claude-code
 ```
 
 Then, once, in the installed folder:
 
 ```
 npm install && npx playwright install chromium
+npm run smoke
 ```
 
-You need Node.js 20 or newer. For the video you also need `ffmpeg`, and for the sound Python 3.
+You need Node.js 20 or newer. For the video you also need `ffmpeg`, and for the sound Python 3. `npm run smoke` builds every example, loads the live pages, renders a frame of each film, encodes a short clip and checks the review and sound tools, in about 15 seconds. It names the check that failed.
+
+### About this fork
+
+This is a fork of [elvarofficial/teardown](https://github.com/elvarofficial/teardown), which does not accept pull requests. It carries these fixes from that repo's issue tracker:
+
+- **macOS rendering** ([#4](https://github.com/elvarofficial/teardown/issues/4)): headless Chromium got no WebGL context, so every capture timed out. `paths.mjs` now passes `--use-angle=metal` on macOS.
+- **Sheet folder deletion** ([#5](https://github.com/elvarofficial/teardown/issues/5)): `sheet.mjs` wiped whatever folder `--name` (or `--every`) pointed at. It now accepts only a plain folder name.
+- **Video colour range** ([#8](https://github.com/elvarofficial/teardown/issues/8)): capture wrote full-range `yuvj420p`. It now writes standard `yuv420p` at limited range.
+- **Hardcoded ffmpeg path** ([#10](https://github.com/elvarofficial/teardown/issues/10)): `sfx` called the author's Windows ffmpeg. It now uses `FFMPEG`, or `ffmpeg` on PATH.
+
+`npm run smoke` checks each of them.
 
 ## Use
 

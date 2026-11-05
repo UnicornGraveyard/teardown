@@ -13,7 +13,10 @@ One machine, one page. The visitor sees the thing run, presses a button, and the
 
 ```
 cd "$SKILL_DIR" && npm install && npx playwright install chromium
+cd "$SKILL_DIR" && npm run smoke
 ```
+
+`npm run smoke` takes about 15 seconds and names the check that failed: no WebGL context, a page error, a blank frame, the wrong video colour range, the review sheets or the sound. Run it after the first install and after changing the kit. If `sheet` reports that this ffmpeg has no `drawtext`, the review sheets still work, but the tiles have no `t=` labels.
 
 The pages need nothing else. The video needs `ffmpeg` on PATH and the score needs Python 3 (standard library only). Set `FFMPEG`, `PYTHON` or `CHROMIUM` to point at other binaries.
 
