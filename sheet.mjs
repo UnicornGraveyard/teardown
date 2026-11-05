@@ -74,6 +74,13 @@ if (argv.length) {
   name ??= 'beats';
 }
 
+// The sheet folder is wiped below, so its name must stay a single plain folder name inside <video>_sheets/.
+// Check the final name: it can also come from --every, which is pasted into the default.
+if (!/^[\w.-]+$/.test(name) || /^\.+$/.test(name)) {
+  console.error(`--name must be a plain folder name (letters, digits, . _ -), got ${JSON.stringify(name)}`);
+  process.exit(1);
+}
+
 // ffmpeg returns no frame for a seek this close to the end of the file, so keep 50 ms off it
 const eps = 0.05;
 times = [...new Set(times.map((t) => Math.min(Math.max(t, 0), duration - eps).toFixed(2)))]
