@@ -14,7 +14,7 @@ import random
 import subprocess
 
 SR = 48000
-FFMPEG = r"C:\Users\user_\.claude\bin\ffmpeg.exe"
+FFMPEG = os.environ.get("FFMPEG", "ffmpeg")
 SAMPLES = os.path.join(os.path.dirname(os.path.abspath(__file__)), "samples")
 
 
